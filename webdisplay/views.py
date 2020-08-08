@@ -141,7 +141,7 @@ def unzipzip(name,path, newpath):
             newpath = os.path.join(queueapks,justname)
             subprocess.run(["mv",f,newpath])
         
-    
+    cleartemp()
 
 #when apk is uploaded for just scan
 def apkscan(name):
