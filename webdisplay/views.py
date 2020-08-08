@@ -156,7 +156,22 @@ def apkscan(name):
     shutil.move(path,newpath)
     logger("Queued for scan")
 
-
+#when zip is uploaded for just scan
+def zipscan(name):
+    logger("\n")
+    logger("New ZIP scan")
+    logger(name)
+    path = os.path.join(data_DIR, "data/queueupload/")
+    path = os.path.join(path, name)
+    #full_permission(path)
+    newpath = os.path.join(data_DIR, "data/temp/")
+    newpath = os.path.join(newpath, name)
+    #path is the current path of the zip file
+    #newpath is temp folder where zip will be extracted
+    unzipzip(name,path,newpath)
+    
+    def versionzip(name):
+        return HttpResponse("WIP")
 
 #when zip is uploaded for scan+version check
 def scanversionzip(name):
