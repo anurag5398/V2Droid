@@ -170,8 +170,7 @@ def zipscan(name):
     #newpath is temp folder where zip will be extracted
     unzipzip(name,path,newpath)
     
-    def versionzip(name):
-        return HttpResponse("WIP")
+    
 
 #when zip is uploaded for scan+version check
 def scanversionzip(name):
