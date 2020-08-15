@@ -125,3 +125,4 @@ dmypy.json
 .pyre/
 
 /static/ADB_py.py
+/static/ADB_py
