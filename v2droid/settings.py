@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = '__2oct$2msl_ve=hbp-%16r=6=a&h3rh8!=f&p^y0qt#i14d49'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -55,7 +56,7 @@ ROOT_URLCONF = 'v2droid.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ os.path.join(os.getcwd(), "templates") ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,7 +78,7 @@ WSGI_APPLICATION = 'v2droid.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'new_db.sqlite3',
     }
 }
 
@@ -118,4 +119,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(os.getcwd(), 'static'),
+)
+
+MEDIA_ROOT = os.path.join(os.getcwd(), "scanautomation/data/queueupload")
+MEDIA_URL = '/media/'
