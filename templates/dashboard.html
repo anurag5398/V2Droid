@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+  <!-- Header -->
+  <header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="fas fa-tachometer-alt"></i> My Dashboard</b></h5>
+  </header>
+
+
+  <div class="w3-row-padding w3-margin-bottom">
+    <div class="w3-quarter">
+      <div class="w3-container w3-red w3-padding-16">
+        <div class="w3-left"><i class="fas fa-suitcase w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>totalscans</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Total Scans</h4>
+      </div>
+    </div>
+
+    <div class="w3-quarter">
+      <div class="w3-container w3-blue w3-padding-16">
+        <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>totalprojects</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Projects Scanned</h4>
+      </div>
+    </div>
+
+    <div class="w3-quarter">
+      <div class="w3-container w3-teal w3-padding-16">
+        <div class="w3-left"></div>
+        <div class="w3-right">
+          <h3>Approx4hrs. from logfile</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Last Used</h4>
+      </div>
+    </div>
+
+    <div class="w3-quarter">
+      <div class="w3-container w3-orange w3-text-white w3-padding-16">
+        <div class="w3-left"><i class="fas fa-memory w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>25% free</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>System Memory Status</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-panel">
+    <div class="w3-row-padding" style="margin:0 -16px">
+      <div class="w3-third">
+        <br><br>
+        <div class="w3-card-4" style="70%">
+          <header class="w3-container w3-light-grey">
+            <h3>Information</h3>
+          </header>
+          <div class="w3-container">
+            <p>
+
+              Files types accepted in APK Vulnerability Scanner.
+              <br>&nbsp&nbsp .apk
+              <br>&nbsp&nbsp .zip
+              <br> Zip files can be used for massive apk scan analysis
+              <br><br>
+              Files types accepted for Version Check.
+              <br>&nbsp&nbsp .zip
+
+            </p>
+          </div>
+          <button class="w3-button w3-block w3-dark-grey">+ Read Documentation</button>
+        </div>
+      </div>
+
+      <div class="w3-twothird">
+        <h5>Latest</h5>
+        <table class="w3-table w3-striped w3-white">
+          <tr>
+            <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
+            <td>View Lastest Scan Report</td>
+            <td><i>LINK TO LAST REPORT</i></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-bell w3-text-red w3-large"></i></td>
+            <td>Latest Project View</td>
+            <td><i>LINK TO LATEST PROJECT SCAN</i></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
+            <td>Log Issue with v2droid</td>
+            <td><i>LINK TO FORM</i></td>
+          </tr>
+          
+          <tr>
+            <td><i class="fa fa-laptop w3-text-red w3-large"></i></td>
+            <td>CPU overload</td>
+            <td><i>0%</i></td>
+          </tr>
+        
+        </table>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="w3-container">
+    <h5>General Stats</h5>
+    <p>Memory Remaining</p>
+    <div class="w3-grey">
+      <div class="w3-container w3-center w3-padding w3-green" style="width:25%">+25%</div>
+    </div>
+
+    <p>Days to maintainance</p>
+    <div class="w3-grey">
+      <div class="w3-container w3-center w3-padding w3-orange" style="width:50%">50</div>
+    </div>
+
+    
+  <hr>
+
+  
+
+  <div class="w3-container">
+    <h5>Updates</h5>
+    <div class="w3-row">
+      <div class="w3-col m2 text-center">
+      </div>
+      <div class="w3-col m10 w3-container">
+        <h4>Anurag <span class="w3-opacity w3-medium">May 16, 2019, 17:25</span></h4>
+        <p>New base template is half way done</p><br>
+      </div>
+    </div>
+
+    <div class="w3-row">
+      <div class="w3-col m2 text-center">
+      </div>
+      <div class="w3-col m10 w3-container">
+        <h4>anurag <span class="w3-opacity w3-medium">May 17, 2019, 15:00</span></h4>
+        <p>New v2droid is almost ready for deployement</p><br>
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-row">
+    <div class="w3-col m2 text-center">
+    </div>
+    <div class="w3-col m10 w3-container">
+      <h4>anurag <span class="w3-opacity w3-medium">Aug 17, 2020, 15:00</span></h4>
+      <p>Migrating to github.</p><br>
+    </div>
+    </div>
+  </div>
+  <br>
+
+
+
+  <div class="w3-container w3-dark-grey w3-padding-32">
+    <div class="w3-row">
+      <div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-green">About Me:</h5>
+        <a class="w3-button" href="https://github.com/anurag5398/V2Droid">Source Code</a><br>
+        <a class="w3-button" href="https://www.linkedin.com/in/anurag-srivastava28/">Profile</a><br>
+        <a class="w3-button" href="mailto:anurags2898@gmail.com">Contact Me</a>
+      </div>
+      <div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-red">Components</h5>
+        <a class="w3-button" href="https://nginx.com">Nginx</a><br>
+        <a class="w3-button" href="https://gunicorn.org">Gunicorn</a><br>
+        <a class="w3-button" href="https://www.djangoproject.com">Django</a>
+      </div>
+      <div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-orange">User Interface</h5>
+        <a class="w3-button" href="https://www.w3schools.com/w3css/">Framework</a><br>
+        <a class="w3-button" href="https://fontawesome.com/v4.7.0/icons/">Icons</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

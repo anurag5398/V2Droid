@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="w3-main" style="margin-left:205px;margin-top:30px;">
+
+<div class="w3-container">
+	<h2>Scan Results</h2>
+
+  <input class="w3-input w3-border w3-padding" type="text" placeholder="Search for APK..." id="myInput" onkeyup="myFunction()">
+
+	<table class="w3-table-all w3-hoverable" style="" id="myTable">
+		<thead>
+			<tr class="w3-blue">
+            <th> APP NAME </th>
+            <th> Date of Scan </th>
+            <th> Time of Scan </th>
+            <th> Md5 Hash </th>
+            <th> </th>
+            <th>Report </th>
+        	</tr>
+      	</thead>
+      		{% for item in query_result reversed %}
+	        	<tr>
+	            <td>{{ item.app_name }}</td>
+	            <td>{{ item.date }}</td>
+	            <td>{{ item.time }}</td>
+	            <td>{{ item.md5 }}</td>
+	            <td><a style="color:#1cbfff;text-decoration: none;" href="http://127.0.0.1:8000/pdfgen/?locations={{item.md5}}"> PDF </a></td>
+	            <td><a style="color:#063E53;text-decoration: none;" href="http://127.0.0.1:8000/report/?locations={{item.md5}}">View</a></td>
+	        	</tr>
+        	{% endfor %}
+
+
+    </table>
+</div>
+
+</div>
+
+
+<!--check if logged in or not-->
+<br><br> Logged In: <p id="status" class="status" >{{ loggedin }}</p> <p id="status2"> </p> <!--#script to check loggedin yes or no and allow login and logout button accordingly--> <script type="text/javascript">
+  var x = document.getElementById("status");
+  //if yes means logged in, so enable logout button
+  //if no means logged out, so enable login button
+  if(x.innerHTML=="no"){
+    document.getElementById("export-button-login").style.visibility = "visible";
+  }
+  else if(x.innerHTML=="yes"){
+    document.getElementById("export-button-logout").style.visibility = "visible";
+  }
+  else{
+    document.getElementById("status2").innerHTML = "Continue...";
+  }
+</script> 
+
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+{% endblock %}

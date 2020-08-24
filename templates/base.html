@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>V2 Droid</title>
+<link rel="shortcut icon" href="{% static "images/v2logo.png" %}" type="image/x-icon"/> 
+</head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+.w3-allerta {font-family: "Allerta Stencil", Sans-serif;}
+</style>
+<body class="w3-light-grey">
+
+<!-- Top container -->
+<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+  <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  
+  Menu</button>
+  <!--make button that will be made visible in recent scan page, jira login, logout, export-->
+  <button id="exportjira" type="submit" form="exportform" class="w3-button w3-black w3-border w3-border-white w3-hover-white w3-allerta" style="margin-left: 13%; visibility: hidden;">EXPORT</button>
+
+  <span class="w3-bar-item w3-right"> SPS </span>
+
+  <a class="export-button w3-bar-item w3-hover-white w3-right w3-allerta" style="text-decoration: none; visibility: hidden;" href="127.0.0.1:8000/jlogin/" id="export-button-login"> JIRA LOGIN </a> 
+  <a class="export-button w3-bar-item w3-hover-white w3-right w3-allerta" style="text-decoration: none; visibility: hidden;" href="127.0.0.1:8000/jlogout" id="export-button-logout"> JIRA LOGOUT </a>
+  
+  
+</div>
+<br><br>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:200px;" id="mySidebar"><br>
+  <div class="w3-row" style="width:100%;max-height: 35%">
+    <div class="w3-col s12 w3-black"  style="width:100%;">
+      <img src="{% static "images/v2-4.png" %}" class="w3-image w3-hover-grayscale" style="width: 100%; max-width: 500px;">
+    </div>
+  </div>
+  <hr>
+
+
+  <div class="w3-container">
+    <h5><a href="http://127.0.0.1:8000/dashboard/" style="text-decoration: none;">Dashboard</h5></a>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+
+    <button onclick="myfunction('demo')" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-search"></i>  Scan</button>
+    <div id="demo" class="w3-container w3-hide">
+      <a href="http://127.0.0.1:8000/scan/" class="w3-bar-item w3-button w3-padding"><img src="{% static "images/v2logo.png" %}" class="w3-circle w3-hover-opacity" style="width:13%;"> Scanner</a>
+      <a href="http://127.0.0.1:8000/scan" class="w3-bar-item w3-button w3-padding"><img src="{% static "images/v2logo.png" %}" class="w3-circle w3-hover-opacity" style="width:13%;">  Version Check</a>
+    </div>
+
+    <button onclick="myfunction('demo2')" class="w3-bar-item w3-button w3-padding"><i class="fas fa-layer-group"></i>  Results</button>
+    <div id="demo2" class="w3-container w3-hide">
+      <a href="http://127.0.0.1:8000/recentscan/" class="w3-bar-item w3-button w3-padding" style="text-decoration:none"><i class="fas fa-file-alt"></i>  Recent Scans</a>
+      <a href="http://127.0.0.1:8000/projects/" class="w3-bar-item w3-button w3-padding" style="text-decoration:none"><i class="far fa-folder-open"></i>  Recent Projects</a>
+    </div>
+      
+    <a href="http://127.0.0.1:8000/versioncompare/" class="w3-bar-item w3-button w3-padding" style="text-decoration:none"><i class="fas fa-boxes"></i>  Version Compare</a>
+    <a href="http://127.0.0.1:8000/apk-extractor/" class="w3-bar-item w3-button w3-padding" style="text-decoration:none"><i class="fa fa-refresh"></i>  APK-Extractor</a>
+    <a href="http://127.0.0.1:8000/documentation/" class="w3-bar-item w3-button w3-padding" style="text-decoration:none"><i class="fas fa-book"></i>  Readme</a>
+
+    <a href="http://127.0.0.1:8000/logs/" class="w3-bar-item w3-button w3-padding" style="text-decoration:none"><i class="fas fa-tasks"></i>  Logs</a>
+  </div>
+</nav>
+
+{% block content %}
+{% endblock %}
+
+<br><br>
+
+
+  <!-- Footer 
+  <footer class="w3-container w3-padding-16 w3-light-grey" style="margin-bottom: 5px;">
+    <h4>SPS</h4>
+    <p></p>
+  </footer>
+
+   End page content -->
+
+
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+    overlayBg.style.display = "none";
+  } else {
+    mySidebar.style.display = 'block';
+    overlayBg.style.display = "block";
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+  mySidebar.style.display = "none";
+  overlayBg.style.display = "none";
+}
+</script>
+<!--for accordions-->
+<script>
+  function myfunction(id) {
+    var x = document.getElementById(id);
+    if (x.className.indexOf("w3-show") == -1) {
+      x.className += "w3-show";
+    } else {
+      x.className = x.className.replace("w3-show","");
+    }
+  }
+</script>
+
+
+
+</body>
+</html>

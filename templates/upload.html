@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!--style for loader-->
+<style>
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid blue;
+  border-right: 16px solid green;
+  border-bottom: 16px solid red;
+  border-left: 16px solid pink;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+</style>
+
+<div id="wholepage-upload" class="w3-rest w3-main w3-padding-48 w3-padding" style="margin-left:400px;margin-top:43px; margin-right:100px;">
+<!--upload button inside tabs which will be inside a panel-->
+<!--<div class="w3-panel w3-card w3-light-grey">-->
+	<h3>Upload Section</h3>
+	<div class="w3-container w3-white">
+		
+		<div class="w3-row">
+    		<a href="javascript:void(0)" onclick="newscan(event, 'apkscan');">
+      			<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">APK SCAN/ZIP SCAN</div>
+    		</a>
+    
+    		<a href="javascript:void(0)" onclick="newscan(event, 'zipscanversion');">
+      			<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">ZIP SCAN WITH VERSION CHECK</div>
+    		</a>
+    
+    		<a href="javascript:void(0)" onclick="newscan(event, 'zipversion');">
+      			<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">ZIP VERSION CHECK ONLY</div>
+    		</a>
+  	</div>
+
+  	<div id="apkscan" class="w3-container scan" style="display:none">
+  		<br>
+    	<img src="{% static "images/apkscan.png" %}" style="width: 12%;margin-left: 41%" class="w3-image">
+    	
+    	<!-- form for uploading zip/apk for scanning-->
+    	<form id="upload-widget" enctype="multipart/form-data" method="POST"><br>
+    		{% csrf_token %}
+    		<input onclick="makeemvisible()" class="w3-button w3-white w3-border" type="file" name="apkdocument" id="apkdocument" style="text-decoration: none;margin-left:29%" hidden>
+    		&nbsp&nbsp&nbsp&nbsp&nbsp
+ 			<button onclick = "move()" type="submit" id="uploadbutton" class="submit-bttn w3-button w3-white w3-border w3-border-blue" style="border-radius: 9px;visibility: hidden;"><h4>UPLOAD</h3></button><br><br>
+  		</form> 
+  	</div>
+
+
+  	<div id="zipscanversion" class="w3-container scan" style="display:none">
+  		<br>
+    	<img src="{% static "images/zipscanversion.svg" %}" style="width: 12%;margin-left: 41%" class="w3-image">
+
+    	<!-- form for uploading zip for scanning and version-->
+    	<form id="upload-widget" enctype="multipart/form-data" method="POST" class="dropzone"><br>
+    		{% csrf_token %}
+    		<input onclick="makeemvisible2()" class="w3-button w3-white w3-border" type="file" name="zipdocument" id="zipdocument" style="text-decoration: none;margin-left:29%" hidden>
+    		&nbsp&nbsp&nbsp&nbsp&nbsp
+ 			<button onclick = "move()" type="submit" id="uploadbutton2" class="submit-bttn w3-button w3-white w3-border w3-border-blue" style="border-radius: 9px;visibility: hidden;"><h4>UPLOAD</h3></button><br><br>
+  		</form> 
+
+
+  	</div>
+
+  	<div id="zipversion" class="w3-container scan" style="display:none">
+  		<br>
+    	<img src="{% static "images/zipversion.svg" %}" style="width: 12%;margin-left: 41%" class="w3-image">
+		
+		<!-- form for uploading zip for scanning and version-->
+    	<form id="upload-widget" enctype="multipart/form-data" method="POST" class="dropzone"><br>
+    		{% csrf_token %}
+    		<input onclick="makeemvisible3()" class="w3-button w3-white w3-border" type="file" name="zipversiondocument" id="zipversiondocument" style="text-decoration: none;margin-left:29%" hidden>
+    		&nbsp&nbsp&nbsp&nbsp&nbsp
+ 			<button onclick = "move()" type="submit" id="uploadbutton3" class="submit-bttn w3-button w3-white w3-border w3-border-blue" style="border-radius: 9px;visibility: hidden;"><h4>UPLOAD</h3></button><br><br>
+  		</form> 
+  	</div>
+</div>
+
+<div class="w3-panel w3-light-blue w3-display-container">
+	<span onclick="this.parentElement.style.display='none'" class="w3-large w3-button w3-display-topright">&times;</span>
+	<h3>Information</h3>
+	<p> Choose from any of the above option and upload the respective file. For massive analysis, zip multiple apks and upload .zip file. </p>
+	<p> In version check all the apks version is extracted and compared with other similar projects apk version. Each zip file is considered as one project.</p>
+</div>
+
+<div class="w3-panel w3-blue w3-display-container">
+	<span onclick="this.parentElement.style.display='none'" class="w3-large w3-button w3-display-topright">&times;</span>
+	<h3>Information</h3>
+	<p> Logs are updated every few seconds when something is happening in the background. Check logs for status update. Please reupload your file, If no activity can be seen even after 15-30 minutes.</p>
+</div>
+
+<div class="w3-panel w3-pale-green w3-bottombar w3-border-green w3-border w3-display-container" id="successnote" style="visibility: hidden;">
+	<span onclick="this.parentElement.style.display='none'" class="w3-button w3-display-topright w3-large">&times;</span>
+	<p> Uploaded Successfully. Scan results can take sometime, it can be viewed in Results menu. Version check can be checked Instantly in the respective menu.DO NOT Navigate to any other links until this message self-disappears. Cheers XD</p>
+
+</div>
+
+<!---adding loading animation-->
+<div class="w3-display-middle" style="visibility: hidden;">
+  <div id="loaderr" class="loader"></div>
+</div>
+
+<!---animation complete-->
+
+
+<script type="text/javascript">
+	function makeemvisible(){
+		document.getElementById("uploadbutton").style.visibility = "visible";
+	}
+</script>
+<script type="text/javascript">
+	function makeemvisible2(){
+		document.getElementById("uploadbutton2").style.visibility = "visible";
+	}
+</script>
+<script type="text/javascript">
+	function makeemvisible3(){
+		document.getElementById("uploadbutton3").style.visibility = "visible";
+	}
+</script>
+
+<script type="text/javascript">
+
+function move(){ 
+	document.getElementById("successnote").style.visibility = "visible";
+  document.getElementById("loaderr").style.visibility = "visible";
+  document.getElementById("wholepage-upload").classList.add('w3-grayscale-max');
+  var x = new Date();
+  var time = x.getHours() + ":" + x.getMinutes() + ":" + x.getSeconds();
+  //alert("File has started upload at "+time+"  Please Do not navigate to any other page until this-page is reloaded.");
+}	
+</script>
+
+<script>
+function newscan(evt, cityName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("scan");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-border-blue", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.firstElementChild.className += " w3-border-blue";
+}
+</script>
+
+<script type="text/javascript">
+  $(document).ready(
+    function(){
+        $('input:file').change(
+            function(){
+                if ($(this).val()) {
+                    $('input:submit').attr('disabled',false);
+                    // or, as has been pointed out elsewhere:
+                    // $('input:submit').removeAttr('disabled'); 
+                } 
+            }
+            );
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,471 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static "newstatic/bootstrap.min.css" %}">
+<link rel="stylesheet" href="{% static "newstatic/style.css" %}">
+<link rel="stylesheet" href="{% static "newstatic/AdminLTE.min.css" %}">
+<link rel="stylesheet" href="{% static "newstatic/_all-skins.min.css" %}">
+
+
+
+        <!-- Main content -->
+        <div class="w3-container" style="margin-left: 17%">
+
+<section id="information">
+  <h2 class="page-header"></h2>
+  <p class="lead">
+      <div class="row">
+    <div class="col-sm-3 w3-container">
+      <div class="box box-primary w3-container">
+
+
+        <div class="box-body center w3-container">
+            <img id="app_icon" src=""/><br />
+        </div><!-- /.box-body -->
+      </div><!-- /.box -->
+
+        <div class="box box-danger w3-container">
+        <div class="box-header with-border w3-container">
+          <h3 class="box-title">Apk Details</h3>
+          <span class="label label-danger pull-right"><i class="glyphicon glyphicon-collapse-up"></i></span>
+        </div><!-- /.box-header -->
+
+        <div class="box-body danger w3-container">
+          <span class="label label-danger">App Name</span> <b>{{appname}}</b></br>
+          <span class="label label-danger">Size</span> <b>{{size}}</b>
+        </div><!-- /.box-body -->
+      </div><!-- /.box -->
+
+    </div><!-- /.col -->
+    <div class="col-sm-5">
+      <div class="box box-success">
+        <div class="box-header with-border">
+          <h3 class="box-title">File Information</h3>
+          <span class="label label-success pull-right"><i class="glyphicon glyphicon-file"></i></span>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+           <div class="list-group">
+                  <p>
+                      <span class="label label-success">Package Name</span>
+                      {{package_name}}
+                  </p>
+
+                  <p>
+                      <span class="label label-success">MD5</span>
+                      {{md5}}
+                  </p>
+                  <p>
+                     <span class="label label-success">SHA1</span>
+                      {{sha1}}
+                  </p>
+                  <p>
+                     <span class="label label-success">SHA256</span>
+                    {{sha256}}
+                </p>
+             </div>
+
+        </div><!-- /.box-body -->
+      </div><!-- /.box -->
+    </div><!-- /.col -->
+
+    <div class="col-sm-4">
+      <div class="box box-warning">
+        <div class="box-header with-border">
+          <h3 class="box-title">App Information</h3>
+          <span class="label label-warning pull-right"><i class="glyphicon glyphicon-info-sign"></i></span>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+        <div class="list-group">
+                  <p>
+                     <span class="label label-warning">Main Activity</span>
+                  {{main_activity}}
+                  </p>
+                  <p>
+                     <span class="label label-warning">Target SDK</span>
+                    {{target_sdk}}
+                     <span class="label label-warning">Min SDK</span>
+                    {{min_sdk}}
+                     <span class="label label-warning">Max SDK</span>
+                     {{max_sdk}}
+                  </p>
+                  <p>
+                     <span class="label label-warning">Android Version Name</span>
+                     {{androvername}}
+                  </p>
+                  <p>
+                  <span class="label label-warning">Android Version Code</span>
+                  {{androver}}
+                  </p>
+       </div>
+
+        </div><!-- /.box-body -->
+      </div><!-- /.box -->
+    </div><!-- /.col -->
+    <!---Components-->
+  </div><!-- /.row -->
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>{{cnt_act}}</h3>
+
+              <p>ACTIVITIES</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-language"></i>
+            </div>
+
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>{{cnt_ser}}</h3>
+
+              <p>SERVICES</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-gears"></i>
+            </div>
+
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>{{cnt_bro}}</h3>
+
+              <p>RECEIVERS</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-sort-amount-desc"></i>
+            </div>
+
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>{{cnt_pro}}</h3>
+
+              <p>PROVIDERS</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-database"></i>
+            </div>
+
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+      <!-- /.row -->
+
+ <!--Exported Components-->
+<div class="row">
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-aqua"><i class="fa fa-language"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Exported </br>Activities</span>
+              <span class="info-box-number">{{e_act}}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-green"><i class="fa fa-gears"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Exported </br>Services</span>
+              <span class="info-box-number">{{e_ser}}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+
+        <!-- fix for small devices only -->
+        <div class="clearfix visible-sm-block"></div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-yellow"><i class="fa fa-sort-amount-desc"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Exported </br>Receivers</span>
+              <span class="info-box-number">{{e_bro}}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-red"><i class="fa fa-database"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Exported </br>Providers</span>
+              <span class="info-box-number">{{e_cnt}}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+      </div>
+ <!--End of Exported -->
+</section><!-- /#introduction -->
+
+
+
+
+<section id="cerificsate" >
+  <h2 class="page-header"></h2>
+              &nbsp&nbsp
+             <!-- /.box-header -->
+              <h3 class="box-title">&nbsp&nbsp&nbsp&nbsp&nbsp
+                <img height="20px" src="https://image.flaticon.com/icons/svg/271/271228.svg"></i>  
+               <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">Show Certificates</button></h3><br>&nbsp&nbsp
+            </div>
+
+            <div class="collapse" id="collapseExample" style="color:black; margin-left:20%;margin-top: -5.1%; width:65%;">
+              <div card = "card card-body">
+ <pre class="hierarchy bring-up"><code class="language-bash" data-lang="bash">
+{{cert_info}}
+
+<strong>Certicate Status: </strong><span class="label label-success">{{cert_key}}</span>
+</code></pre>
+</section>
+
+</div></div>
+
+<!-- ============================================================= -->
+<div class="w3-container" style="margin-left: 14%">
+
+
+<form id="exportform" action="" method="POST">
+{% csrf_token %}
+<section id="permissions"  style="width: 100%; margin-left:1%; margin-top: -5%; ">
+  <h2 class="page-header"></h2>
+  <!-- /.box -->
+
+          <div class="box w3-container">
+          <div class="box-header w3-container">
+             <!-- /.box-header -->
+              <h3 class="box-title" style="font-weight: bold;"><i class="fa fa-align-justify"></i> Android Permissions</h3>
+            </div>
+  <div class="w3-responsive box-body no-padding w3-container">
+             <div class="w3-container">
+                                    <table class="table table-bordered table-hover table-striped" style="text-align:left;">
+                                        <thead style="color:#856941;">
+                                            <tr>
+                                                <th>PERMISSION</th>
+                                                <th>STATUS</th>
+                                                <th>EXPORT</th>
+                                                <th>INFO </th>
+                                                <th>DESCRIPTION</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody style="color:#735D41;">
+                  {% for perm_title, perm_stat, perm_info, perm_desc, issue_info_permission in permission %}
+                    <tr>
+                    <td>{{ perm_title }}</td>
+                    <td>
+                    {% if perm_stat == 'dangerous' %}
+                      <span class="label label-danger">dangerous</span>
+                    {% elif perm_stat == 'normal' %}
+                      <span class="label label-info">normal</span>
+                    {% elif perm_stat == 'signatureOrSystem' %}
+                      <span class="label label-warning">SignatureOrSystem</span>
+                    {% elif perm_stat == 'signature' %}
+                      <span class="label label-success">signature</span>
+                    {% endif %}
+                    </td>
+
+                    <td> <input type="checkbox" name="permi" value={{issue_info_permission}}> </td>
+
+
+                    <td>{{ perm_info }}</td>
+                    <td>{{ perm_desc }}</td>
+                    </tr>
+                    {% endfor %}
+
+                    </tbody>
+                    </table>
+
+                            </div>
+
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+</section>
+
+
+<!-- ============================================================= -->
+
+<section id="binary_analysis" style="width: 100%; margin-left:1%;">
+  <h2 class="page-header"></h2>
+  <!-- /.box -->
+
+          <div class="box w3-container">
+          <div class="box-header w3-container">
+             <!-- /.box-header -->
+              <h3 class="box-title" style="font-weight: bold;"><i class="fa fa-flag"></i> Android Library Binary Analysis</h3>
+            </div>
+  <div class="box-body no-padding w3-container">
+             <div class="w3-responsive w3-container">
+                                    <table class="table table-bordered table-hover table-striped w3-responsive">
+                                        <thead style="color:#856941;">
+                                            <tr>
+                                                <th>ISSUE</th>
+                                                <th>SEVERITY</th>
+                                                <th> EXPORT </th>
+                                                <th>DESCRIPTION</th>
+                                                <th>FILES</th>
+
+                                            </tr>
+                                        </thead>
+                                        
+                                        <tbody style="color:#735D41;">
+
+                                          {% for bin_title,bin_stat,bin_desc,bin_file,issue_info_bin in bin_anal %}
+                                          <tr>
+                                            <td>
+                                            {{bin_title}}
+                                            </td>
+                                            <td>
+
+                                              {% if bin_stat == "high" %}
+                                                <span class="label label-danger">high</span>
+                                              {% elif bin_stat == "info" %}
+                                                <span class="label label-info">info</span>
+                                              {% elif bin_stat == "medium" %}
+                                                <span class="label label-warning">medium</span>
+                                              {% endif %}
+
+                                            </td>
+                                            <td>  <input type="checkbox" name="permi" value={{issue_info_bin}}>  </td>
+                                            <td>
+                                            {{bin_desc}}
+                                            </td>
+                                            <td>
+                                              {{bin_file}}
+                                            </td>
+
+                                           </tr>
+                                          {% endfor %}
+
+                    </tbody>
+                    </table>
+
+                            </div>
+
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+</section>
+<!-- ============================================================= -->
+<!-- ============================================================= -->
+<!-- ============================================================= -->
+
+<section id="manifest" style="width: 100%; margin-left:1%;">
+  <h2 class="page-header"></h2>
+   <!-- /.box -->
+
+          <div class="box w3-container">
+            <div class="box-header w3-container">
+              <h3 class="box-title" style="font-weight: bold;"><i class="fa fa-search"></i> Manifest Analysis</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <div class="w3-responsive w3-container">
+                                    <table class="table table-bordered table-hover table-striped" style="text-align:left;">
+                                        <thead style="color:#856941;">
+                                            <tr>
+                                                <th>ISSUE</th>
+                                                <th>SEVERITY</th>
+                                                <th> EXPORT </th>
+                                                <th>DESCRIPTION</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody style="color:#735D41;">
+
+
+                                          {% for title,stat,desc,issue_info_manifest in manifest %}
+                                          <tr>
+                                            <td>
+                                            {{title}}
+                                            </td>
+                                            <td>
+
+                                              {% if stat == "high" %}
+                                                <span class="label label-danger">high</span>
+                                              {% elif stat == "info" %}
+                                                <span class="label label-info">info</span>
+                                              {% elif stat == "medium" %}
+                                                <span class="label label-warning">medium</span>
+                                              {% endif %}
+
+                                            </td>
+                                            <td>
+                                               <input type="checkbox" name="permi" value={{issue_info_manifest}}> 
+                                            </td>
+                                            <td>
+                                            {{desc}}
+                                            </td>
+
+                                           </tr>
+                                          {% endfor %}
+
+                    </tbody>
+                    </table>
+
+                            </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+</section>
+</form>
+
+<!-- moved to base.html
+<button style="position: relative; margin-top: 0%; margin-left: 1%; background-color: black; height: 30px; width: 30px;z-index: 5;" type="submit" form="exportform"></button> -->
+
+
+
+        </div><!-- /.content -->
+
+
+</div>
+
+<script type="text/javascript">
+  document.getElementById("exportjira").style.visibility = "visible";
+</script>
+<script type="text/javascript">
+function move(){ 
+	document.getElementById("certnote").style.visibility = "visible";
+		}
+</script
+
+
+{% endblock %}
